@@ -16,6 +16,9 @@ module.exports = {
     },
     async index(req, res) {
         const ongs = await connection('ongs').select('*')
+        if(!ongs)  {
+            return res.status(400).json({err : 'erro'})
+        }
         return res.json(ongs);
     }
 }
